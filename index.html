@@ -1,0 +1,608 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CYBER SPHERE | Hacker's Domain</title>
+    <style>
+        /* Global Styles */
+        body {
+            background-color: #000;
+            color: #0f0;
+            font-family: 'Courier New', monospace;
+            margin: 0;
+            padding: 0;
+            overflow-x: hidden;
+            line-height: 1.6;
+        }
+
+        /* Matrix Rain Background */
+        #matrix {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            opacity: 0.15;
+        }
+
+        /* Header Styles */
+        header {
+            padding: 2rem;
+            text-align: center;
+            border-bottom: 1px solid #0f0;
+        }
+
+        h1 {
+            font-size: 3rem;
+            margin: 0;
+            text-shadow: 0 0 10px #0f0;
+            animation: glitch 1s linear infinite;
+        }
+
+        /* Navigation */
+        nav {
+            display: flex;
+            justify-content: center;
+            padding: 1rem;
+            background-color: rgba(0, 15, 0, 0.5);
+        }
+
+        nav a {
+            color: #0f0;
+            text-decoration: none;
+            margin: 0 1.5rem;
+            padding: 0.5rem 1rem;
+            border: 1px solid #0f0;
+            transition: all 0.3s;
+        }
+
+        nav a:hover {
+            background-color: #0f0;
+            color: #000;
+            box-shadow: 0 0 15px #0f0;
+        }
+
+        /* Main Content */
+        main {
+            padding: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        section {
+            margin-bottom: 3rem;
+            border-left: 2px solid #0f0;
+            padding-left: 1.5rem;
+        }
+
+        /* Terminal Effect */
+        .terminal {
+            background-color: rgba(0, 20, 0, 0.7);
+            border: 1px solid #0f0;
+            padding: 1.5rem;
+            margin: 2rem 0;
+            box-shadow: 0 0 20px rgba(0, 255, 0, 0.3);
+        }
+
+        .prompt {
+            color: #0f0;
+        }
+
+        .command {
+            color: #0f0;
+            font-weight: bold;
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 1.5rem;
+            border-top: 1px solid #0f0;
+            background-color: rgba(0, 15, 0, 0.5);
+        }
+
+        /* Animations */
+        @keyframes glitch {
+            0% { transform: translate(0); }
+            20% { transform: translate(-2px, 2px); }
+            40% { transform: translate(-2px, -2px); }
+            60% { transform: translate(2px, 2px); }
+            80% { transform: translate(2px, -2px); }
+            100% { transform: translate(0); }
+        }
+
+        .blink {
+            animation: blink 1s step-end infinite;
+        }
+
+        @keyframes blink {
+            from, to { opacity: 1; }
+            50% { opacity: 0; }
+        }
+    </style>
+</head>
+<body>
+    <!-- Matrix Rain Background -->
+    <canvas id="matrix"></canvas>
+
+    <!-- Header -->
+    <header>
+        <h1>CYBER SPHERE</h1>
+        <p>_Hacking into the digital frontier_</p>
+    </header>
+
+    <!-- Navigation -->
+    <nav>
+        <a href="#home">HOME</a>
+        <a href="#about">ABOUT</a>
+        <a href="#services">SERVICES</a>
+        <a href="#blog">BLOG</a>
+        <a href="#contact">CONTACT</a>
+    </nav>
+
+    <!-- Main Content -->
+    <main>
+        <section id="home">
+            <h2>> Welcome to Cyber Sphere</h2>
+            <div class="terminal">
+                <p><span class="prompt">user@cybersphere:~$</span> <span class="command">init_system</span></p>
+                <p>Initializing Cyber Sphere v1.0...</p>
+                <p>Booting security protocols...</p>
+                <p>Establishing secure connection...</p>
+                <p>System ready<span class="blink">_</span></p>
+            </div>
+            <p>Your gateway to cybersecurity knowledge and ethical hacking resources.</p>
+        </section>
+
+        <section id="about">
+            <h2>> About Us</h2>
+            <p>Cyber Sphere is a collective of cybersecurity enthusiasts dedicated to exploring the digital frontier.</p>
+            <p>We specialize in:</p>
+            <ul>
+                <li>Ethical Hacking</li>
+                <li>Penetration Testing</li>
+                <li>Security Research</li>
+                <li>Digital Forensics</li>
+            </ul>
+        </section>
+
+        <section id="services">
+            <h2>> Our Services</h2>
+            <div class="terminal">
+                <p><span class="prompt">user@cybersphere:~$</span> <span class="command">list_services</span></p>
+                <p>1. Vulnerability Assessment</p>
+                <p>2. Security Audits</p>
+                <p>3. Network Protection</p>
+                <p>4. Cybersecurity Training</p>
+                <p>5. Incident Response</p>
+            </div>
+        </section>
+    </main>
+
+    <!-- Matrix Rain Script -->
+    <script>
+        const canvas = document.getElementById('matrix');
+        const ctx = canvas.getContext('2d');
+
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+
+        const katakana = 'アァカサタナハマヤャラワガザダバパイィキシチニヒミリヰギジヂビピウゥクスツヌフムユュルグズブヅプエェケセテネヘメレヱゲゼデベペオォコソトノホモヨョロヲゴゾドボポヴッン';
+        const latin = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+        const nums = '0123456789';
+        const symbols = '!"#$%&\'()*+,-./:;<=>?@[\\]^_`{|}~';
+
+        const alphabet = katakana + latin + nums + symbols;
+
+        const fontSize = 16;
+        const columns = canvas.width / fontSize;
+
+        const rainDrops = [];
+
+        for (let x = 0; x < columns; x++) {
+            rainDrops[x] = 1;
+        }
+
+        const draw = () => {
+            ctx.fillStyle = 'rgba(0, 0, 0, 0.05)';
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+            
+            ctx.fillStyle = '#0f0';
+            ctx.font = fontSize + 'px monospace';
+
+            for (let i = 0; i < rainDrops.length; i++) {
+                const text = alphabet.charAt(Math.floor(Math.random() * alphabet.length));
+                ctx.fillText(text, i * fontSize, rainDrops[i] * fontSize);
+                
+                if (rainDrops[i] * fontSize > canvas.height && Math.random() > 0.975) {
+                    rainDrops[i] = 0;
+                }
+                rainDrops[i]++;
+            }
+        };
+
+        setInterval(draw, 30);
+
+        window.addEventListener('resize', () => {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        });
+    </script>
+</body>
+</html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CYBER HACKING LAB | Enter the Matrix</title>
+    <style>
+        /* === GLOBAL STYLES === */
+        :root {
+            --neon-green: #0ff;
+            --neon-purple: #f0f;
+            --dark-bg: #000;
+            --glow: 0 0 10px var(--neon-green), 0 0 20px var(--neon-green);
+        }
+
+        body {
+            background-color: var(--dark-bg);
+            color: var(--neon-green);
+            font-family: 'Courier New', monospace;
+            margin: 0;
+            padding: 0;
+            overflow-x: hidden;
+            line-height: 1.6;
+        }
+
+        /* === MATRIX RAIN BACKGROUND === */
+        #matrix-rain {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            opacity: 0.3;
+        }
+
+        /* === HEADER WITH GLITCH EFFECT === */
+        header {
+            text-align: center;
+            padding: 2rem;
+            border-bottom: 1px solid var(--neon-green);
+            position: relative;
+        }
+
+        h1 {
+            font-size: 4rem;
+            margin: 0;
+            text-shadow: var(--glow);
+            animation: glitch 2s infinite;
+        }
+
+        @keyframes glitch {
+            0% { text-shadow: 0 0 10px var(--neon-green); }
+            25% { text-shadow: -5px -5px 10px var(--neon-purple); }
+            50% { text-shadow: 5px 5px 10px var(--neon-green); }
+            75% { text-shadow: -5px 5px 10px var(--neon-purple); }
+            100% { text-shadow: 0 0 10px var(--neon-green); }
+        }
+
+        /* === TERMINAL STYLES === */
+        .terminal {
+            background: rgba(0, 20, 0, 0.5);
+            border: 1px solid var(--neon-green);
+            border-radius: 5px;
+            padding: 1.5rem;
+            margin: 2rem auto;
+            max-width: 800px;
+            box-shadow: var(--glow);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .terminal::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(
+                rgba(0, 255, 255, 0.1) 1px,
+                transparent 1px
+            );
+            background-size: 100% 2px;
+            animation: scan 8s linear infinite;
+        }
+
+        @keyframes scan {
+            0% { transform: translateY(-100%); }
+            100% { transform: translateY(100%); }
+        }
+
+        .prompt {
+            color: var(--neon-green);
+            font-weight: bold;
+        }
+
+        .command {
+            color: var(--neon-green);
+            animation: blink 1s infinite;
+        }
+
+        @keyframes blink {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0; }
+        }
+
+        /* === HACKER TYPING EFFECT === */
+        .typing-effect {
+            border-right: 2px solid var(--neon-green);
+            white-space: nowrap;
+            overflow: hidden;
+            animation: typing 3s steps(40, end), blink-caret 0.75s step-end infinite;
+        }
+
+        @keyframes typing {
+            from { width: 0; }
+            to { width: 100%; }
+        }
+
+        @keyframes blink-caret {
+            from, to { border-color: transparent; }
+            50% { border-color: var(--neon-green); }
+        }
+
+        /* === CYBER BUTTONS === */
+        .cyber-btn {
+            background: transparent;
+            color: var(--neon-green);
+            border: 1px solid var(--neon-green);
+            padding: 10px 20px;
+            font-family: 'Courier New', monospace;
+            cursor: pointer;
+            transition: all 0.3s;
+            position: relative;
+            overflow: hidden;
+            margin: 10px;
+        }
+
+        .cyber-btn:hover {
+            background: var(--neon-green);
+            color: #000;
+            box-shadow: var(--glow);
+        }
+
+        .cyber-btn::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(
+                90deg,
+                transparent,
+                rgba(0, 255, 255, 0.4),
+                transparent
+            );
+            transition: 0.5s;
+        }
+
+        .cyber-btn:hover::before {
+            left: 100%;
+        }
+
+        /* === FOOTER === */
+        footer {
+            text-align: center;
+            padding: 1.5rem;
+            border-top: 1px solid var(--neon-green);
+            margin-top: 2rem;
+        }
+    </style>
+</head>
+<body>
+    <!-- MATRIX RAIN BACKGROUND -->
+    <canvas id="matrix-rain"></canvas>
+
+    <!-- HEADER -->
+    <header>
+        <h1>CYBER HACKING LAB</h1>
+        <p class="typing-effect">>_ Accessing encrypted systems...</p>
+    </header>
+
+    <!-- MAIN CONTENT -->
+    <main>
+        <div class="terminal">
+            <p><span class="prompt">root@hacklab:~#</span> <span class="command">whoami</span></p>
+            <p>> Elite Hacker</p>
+            <p><span class="prompt">root@hacklab:~#</span> <span class="command">scan_targets</span></p>
+            <p>> Scanning network... [██████████] 100%</p>
+            <p>> Vulnerabilities detected: 12</p>
+            <p><span class="prompt">root@hacklab:~#</span> <span class="command">exploit --all</span></p>
+            <p>> Injecting payload...</p>
+            <p>> System compromised.</p>
+        </div>
+
+        <div style="text-align: center;">
+            <button class="cyber-btn">LAUNCH ATTACK</button>
+            <button class="cyber-btn">ENCRYPT FILES</button>
+            <button class="cyber-btn">BRUTE FORCE</button>
+        </div>
+    </main>
+
+    <!-- MATRIX RAIN SCRIPT -->
+    <script>
+        const canvas = document.getElementById('matrix-rain');
+        const ctx = canvas.getContext('2d');
+
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+
+        const chars = "01";
+        const fontSize = 14;
+        const columns = canvas.width / fontSize;
+
+        const drops = [];
+        for (let i = 0; i < columns; i++) {
+            drops[i] = Math.random() * -100;
+        }
+
+        function draw() {
+            ctx.fillStyle = "rgba(0, 0, 0, 0.05)";
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+            ctx.fillStyle = "#0f0";
+            ctx.font = fontSize + "px monospace";
+
+            for (let i = 0; i < drops.length; i++) {
+                const text = chars.charAt(Math.floor(Math.random() * chars.length));
+                ctx.fillText(text, i * fontSize, drops[i] * fontSize);
+
+                if (drops[i] * fontSize > canvas.height && Math.random() > 0.975) {
+                    drops[i] = 0;
+                }
+                drops[i]++;
+            }
+        }
+
+        setInterval(draw, 50);
+    </script>
+</body>
+</html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CyberSphere | Hacker's Hub</title>
+    <style>
+        /* === FOOTER STYLES === */
+        .cyber-footer {
+            background: rgba(0, 15, 0, 0.3);
+            border-top: 1px solid #0ff;
+            padding: 2rem 0;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 -5px 20px rgba(0, 255, 255, 0.1);
+            margin-top: 3rem;
+        }
+
+        .cyber-footer::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(
+                45deg,
+                transparent,
+                rgba(0, 255, 255, 0.05),
+                transparent
+            );
+            z-index: -1;
+        }
+
+        .footer-title {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: #0ff;
+            text-shadow: 0 0 10px #0ff;
+            letter-spacing: 2px;
+        }
+
+        .footer-name {
+            font-size: 1.2rem;
+            color: #fff;
+            margin-bottom: 1.5rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-bottom: 1.5rem;
+        }
+
+        .social-link {
+            color: #0ff;
+            font-size: 1.5rem;
+            transition: all 0.3s;
+            text-decoration: none;
+            position: relative;
+        }
+
+        .social-link:hover {
+            color: #fff;
+            text-shadow: 0 0 15px #0ff;
+            transform: translateY(-3px);
+        }
+
+        .social-link::after {
+            content: "";
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: #0ff;
+            transition: width 0.3s;
+        }
+
+        .social-link:hover::after {
+            width: 100%;
+        }
+
+        .copyright {
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 0.9rem;
+            margin-top: 1rem;
+        }
+
+        /* === PULSE ANIMATION === */
+        @keyframes pulse {
+            0% { opacity: 0.6; }
+            50% { opacity: 1; }
+            100% { opacity: 0.6; }
+        }
+
+        .pulse {
+            animation: pulse 2s infinite;
+        }
+    </style>
+</head>
+<body>
+    <!-- YOUR WEBSITE CONTENT HERE -->
+
+    <!-- CYBER FOOTER -->
+    <footer class="cyber-footer">
+        <div class="footer-title">CYBER SPHERE</div>
+        <div class="footer-name">BY Dinesh Choudhary</div>
+        
+        <div class="social-links">
+            <a href="https://instagram.com/cyber_spherex063" class="social-link" target="_blank">
+                <i class="fab fa-instagram"></i> <!-- Replace with icon if not using Font Awesome -->
+            </a>
+            <a href="https://youtube.com/Cyber SphereX" class="social-link" target="_blank">
+                <i class="fab fa-youtube"></i> <!-- Replace with icon if not using Font Awesome -->
+            </a>
+        </div>
+        
+        <div class="copyright">
+            © 2025 CYBER SPHERE | <span class="pulse">ACCESS GRANTED</span>
+        </div>
+    </footer>
+
+    <!-- FONT AWESOME (for icons) - Optional -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</body>
+</html>
